@@ -118,9 +118,7 @@ export const Navbar = () => {
               <DropdownTrigger>
                 <div className="flex items-center gap-2 cursor-pointer">
                   <span>Xin chào,</span>
-                  <span className={title({ color: "pink", size: "xs" })}>
-                    {user.name}
-                  </span>
+                  <span className="text-pink-500">{user.name}</span>
                 </div>
               </DropdownTrigger>
 
