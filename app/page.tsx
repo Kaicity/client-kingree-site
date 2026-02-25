@@ -35,8 +35,8 @@ export default function Home() {
 
   useEffect(() => {
     socket.on("profile:match", () => {
-      fetchUsers();
       fetchUserDetail();
+      fetchUsers();
     });
 
     return () => {
