@@ -161,7 +161,7 @@ export default function Home() {
                         </h2>
 
                         <p className="text-sm text-gray-500 capitalize">
-                          {GenderLabel[u.gender as UserGender]}
+                          {GenderLabel[u.gender as UserGender]}, {u.age} tuổi
                         </p>
 
                         <p className="text-xs text-gray-400 text-center w-full line-clamp-2">
