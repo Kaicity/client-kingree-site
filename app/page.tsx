@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { cn } from "tailwind-variants";
 import { io } from "socket.io-client";
+import { Skeleton } from "@heroui/skeleton";
 
 const socket = io(process.env.NEXT_PUBLIC_API_BASE_URL);
 
@@ -135,7 +136,7 @@ export default function Home() {
           </h1>
 
           {profiles.length > 0 && user ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6">
               {profiles
                 .filter((u: User) => u.id !== userDetail?.id)
                 .map((u: User) => {
@@ -205,10 +206,38 @@ export default function Home() {
                   );
                 })}
             </div>
-          ) : (
+          ) : !user ? (
             <p className="text-center mt-10">
               Tạo profile của bạn trước khi tìm những người khác !
             </p>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              {Array.from({ length: 8 }).map((_, index) => (
+                <Card
+                  key={index}
+                  className="w-64 space-y-5 p-4 mt-6"
+                  radius="lg"
+                >
+                  <Skeleton className="rounded-lg">
+                    <div className="h-24 rounded-lg bg-default-300" />
+                  </Skeleton>
+
+                  <div className="space-y-3">
+                    <Skeleton className="w-3/5 rounded-lg">
+                      <div className="h-3 w-3/5 rounded-lg bg-default-200" />
+                    </Skeleton>
+
+                    <Skeleton className="w-4/5 rounded-lg">
+                      <div className="h-3 w-4/5 rounded-lg bg-default-200" />
+                    </Skeleton>
+
+                    <Skeleton className="w-2/5 rounded-lg">
+                      <div className="h-3 w-2/5 rounded-lg bg-default-300" />
+                    </Skeleton>
+                  </div>
+                </Card>
+              ))}
+            </div>
           )}
         </div>
       </div>
